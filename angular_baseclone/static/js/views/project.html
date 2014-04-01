@@ -1,6 +1,22 @@
 <div>
-    {{ project.name }}
+    Project name: {{ project.name }}
 </div>
 <div>
-    {{ project.description }}
+    Project description: {{ project.description }}
+</div>
+
+<div>
+    Topics:
+    <h3>
+        Discussions:
+    </h3>
+    <div ng-repeat="topic in topics | topicTypeFilter:'Message'">
+        {{ topic.title }}
+    </div>
+    <h3>
+        Calendar Events:
+    </h3>
+    <div ng-repeat="topic in topics | topicTypeFilter:'CalendarEvent'">
+        {{ topic.title }}
+    </div>
 </div>

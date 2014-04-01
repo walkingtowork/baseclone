@@ -8,6 +8,18 @@ baseclone.config(['$routeProvider', function($routeProvider) {
         otherwise({redirectTo: '/'});
 }]);
 
+// This code creates a custom filter that is used in project.html
+baseclone.filter('topicTypeFilter', function() {
+   return function(topicList, topicType) {
+       var filtered = [];
+       angular.forEach(topicList, function(topic){
+           if (topic.topicable.type == topicType) {
+               filtered.push(topic);
+           }
+       });
+       return filtered;
+   };
+});
 
 // If you need to add headers to an Angular request, it would look like this (this is the same as the
 // Django proxy view where we added headers to the request):
