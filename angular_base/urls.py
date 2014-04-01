@@ -7,9 +7,5 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # This is our new URL
     url(r'^$', 'angular_baseclone.views.index', name="index"),
-
-    # url(r'^$', 'lecture.views.presentation', name="presentation"),
-
-    # If you want only one angular page on your Django site, you could use a url structure like this
-    # url(r'^angular/', 'lecture.views.angular', name="angular"),
+    url(r'^proxy/(?P<path>.*)$', 'angular_baseclone.views.proxy_to', {'target_url': 'https://basecamp.com/2598082/api/v1/'}),
 )
