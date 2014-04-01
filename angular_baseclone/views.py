@@ -1,25 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import mimetypes
-import urllib2
+from django.views.decorators.csrf import csrf_exempt
+import requests
+
 
 def index(request):
     return render(request, "index.html")
 
+# Adding csrf_exempt else Django gives 403 Forbidden and does not hit proxy_to()
+@csrf_exempt
 def proxy_to(request, path, target_url):
     url = '%s%s' % (target_url, path)
-    if request.META.has_key('QUERY_STRING'):
-        url += '?' + request.META['QUERY_STRING']
-    try:
-        req = urllib2.Request(url)
-        req.add_header('Authorization', 'Basic YWxleCsxQHlldGlocS5jb206cGFzc3cwcmQ1')
-        req.add_header('User-Agent', 'alex+1@yetihq.com (alex+1@yetihq.com)')
-        req.add_header('Content-Type', 'application/json')
-        proxied_request = urllib2.urlopen(req)
-        status_code = proxied_request.code
-        mimetype = proxied_request.headers.typeheader or mimetypes.guess_type(url)
-        content = proxied_request.read()
-    except urllib2.HTTPError as e:
-        return HttpResponse(e.msg, status=e.code, mimetype='text/plain')
-    else:
-        return HttpResponse(content, status=status_code, mimetype=mimetype)
+    headers = {
+        'Authorization': 'Basic YWxleCsxQHlldGlocS5jb206cGFzc3cwcmQ1',
+        'User-Agent': 'alex+1@yetihq.com (alex+1@yetihq.com)',
+        'Content-Type': 'application/json'
+    }
+    if request.method == 'GET':
+        proxied_response = requests.get(url, headers=headers)
+    elif request.method == 'POST':
+        proxied_response = requests.post(url, data=request.body, headers=headers)
+
+    return HttpResponse(proxied_response)

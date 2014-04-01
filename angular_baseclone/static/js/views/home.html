@@ -1,3 +1,17 @@
-<div>
-    This is the homepage
+<form>
+    <div>
+        Name: <input ng-model="projectName">
+    </div>
+    <div>
+        Description: <input ng-model="projectDescription">
+    </div>
+    <button ng-click="newProject();">Add a new project!</button>
+</form>
+
+<div ng-repeat="project in projects">
+    <a href="#/projects/{{ project.id }}">
+        <h3>{{ project.name }}</h3>
+        <div>{{ project.description }}</div>
+    </a>
 </div>
+

@@ -2,7 +2,9 @@ var baseclone = angular.module('baseclone',['ngRoute', 'ngResource']);
 
 baseclone.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-        when('/', {templateUrl: '/static/js/views/home.html', controller: HomeController}).
+        when('/', {templateUrl: '/static/js/views/home.html', controller: homeController}).
+        // Add a specific project id as a route parameter here
+        when('/projects/:id', {templateUrl: '/static/js/views/project.html', controller: projectController}).
         otherwise({redirectTo: '/'});
 }]);
 
