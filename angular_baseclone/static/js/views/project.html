@@ -11,7 +11,9 @@
         Discussions:
     </h3>
     <div ng-repeat="topic in topics | topicTypeFilter:'Message'">
-        {{ topic.title }}
+        <a href="#/projects/{{ project.id }}/discussion/{{ topic.topicable.id }}">
+            <p>Title: {{ topic.title }}</p>
+        </a>
     </div>
     <h3>
         Calendar Events:

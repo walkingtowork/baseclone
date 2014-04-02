@@ -20,5 +20,9 @@ def proxy_to(request, path, target_url):
         proxied_response = requests.get(url, headers=headers)
     elif request.method == 'POST':
         proxied_response = requests.post(url, data=request.body, headers=headers)
+    elif request.method == 'PUT':
+        proxied_response = requests.put(url, data=request.body, headers=headers)
+    elif request.method == 'DELETE':
+        proxied_response = requests.delete(url, data=request.body, headers=headers)
 
     return HttpResponse(proxied_response)

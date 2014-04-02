@@ -5,6 +5,7 @@ baseclone.config(['$routeProvider', function($routeProvider) {
         when('/', {templateUrl: '/static/js/views/home.html', controller: homeController}).
         // Add a specific project id as a route parameter here
         when('/projects/:id', {templateUrl: '/static/js/views/project.html', controller: projectController}).
+        when('/projects/:projectId/discussion/:discussionId', {templateUrl: '/static/js/views/discussion.html', controller: discussionController}).
         otherwise({redirectTo: '/'});
 }]);
 

@@ -1,0 +1,21 @@
+<h1>{{ discussion.subject }}</h1>
+<div>
+    {{ discussion.content }}
+</div>
+
+<button ng-click="edit();" ng-hide="editing">
+    Edit
+</button>
+
+<input ng-model="subject" type="text" placeholder="{{ discussion.subject }}" ng-show="editing">
+<br>
+<textarea ng-model="content" type="text" placeholder="{{ discussion.content }}" ng-show="editing"></textarea>
+<br>
+<button ng-click="saveChanges();" ng-show="editing">
+    Save changes
+</button>
+
+<h2>Comments</h2>
+<div ng-repeat="comment in discussion.comments">
+    {{ comment.content }}
+</div>

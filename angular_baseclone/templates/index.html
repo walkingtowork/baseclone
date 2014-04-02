@@ -4,24 +4,30 @@
 <html>
 <head>
     <title></title>
-
     <!-- Vendor Files -->
     <script src="{% static "js/vendors/jquery.js" %}"></script>
+    <!------- Angular ------->
     <script src="{% static "js/vendors/angular/angular.js" %}"></script>
     <script src="{% static "js/vendors/angular/angular-resource.js" %}"></script>
     <script src="{% static "js/vendors/angular/angular-route.js" %}"></script>
+    <!------- Bootstrap ------->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="{% static "js/vendors/ui-bootstrap-tpls-0.10.0.min.js" %}"></script>
+
     <!-- JavaScript -->
     <script src="{% static "js/app.js" %}"></script>
     <!-- Resources -->
     <script src="{% static "js/factories/commentResource.js" %}"></script>
     <!-- Controllers -->
     <script src="{% static "js/controllers/homeController.js" %}"></script>
+    <script src="{% static "js/controllers/discussionController.js" %}"></script>
     <script src="{% static "js/controllers/projectController.js" %}"></script>
+
 </head>
 <body>
     <div ng-app="baseclone">
         Outside of ng-view
-        <div ng-view></div>
+        <div class="container" ng-view></div>
     </div>
 </body>
 </html>
