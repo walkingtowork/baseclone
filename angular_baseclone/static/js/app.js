@@ -1,5 +1,7 @@
-var baseclone = angular.module('baseclone',['ngRoute', 'ngResource']);
+var baseclone = angular.module('baseclone',['ngRoute', 'ngResource', 'ui.bootstrap']);
 
+
+// This is where we set our routes
 baseclone.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/', {templateUrl: '/static/js/views/home.html', controller: homeController}).

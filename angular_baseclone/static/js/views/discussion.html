@@ -17,5 +17,8 @@
 
 <h2>Comments</h2>
 <div ng-repeat="comment in discussion.comments">
-    {{ comment.content }}
+    <b>{{ comment.creator.name }}:</b>{{ comment.content }}
 </div>
+<br>
+<input ng-model="commentText" placeholder="Add a comment...">
+<button ng-click="addComment();">Add comment</button>

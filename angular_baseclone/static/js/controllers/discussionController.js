@@ -1,14 +1,14 @@
-function discussionController($scope, $http, $routeParams, $resource) {
+function discussionController($scope, $http, $routeParams, $resource, Comments) {
     // Here we'll use $routeParams to get the id from the URL and then append it
     // to our $http.get URL
     var projectId = $routeParams.projectId;
     var discussionId = $routeParams.discussionId;
 
     var messageApi = $resource('/proxy/projects/'+ projectId +'/messages/' + discussionId + '.json', {
-        // parameter defaults
-        id: '@id'
+        // Parameter defaults
     }, {
-        update: {method: 'PUT', params: {id: '@id'}}
+        // Actions
+        update: {method: 'PUT'}
     });
 
     $scope.discussion = messageApi.get({id:discussionId});
@@ -30,4 +30,12 @@ function discussionController($scope, $http, $routeParams, $resource) {
         messageApi.update({id:discussionId}, $scope.discussion);
     };
 
+    $scope.commentText = '';
+    $scope.addComment = function() {
+        // Calling our Comments resource
+        Comments.save({ pID:projectId, dID:discussionId }, {'content':$scope.commentText}, function(response) {
+            // Pushing the callback response into $scope.discussion so that it updates the page
+            $scope.discussion.comments.push(response)
+        });
+    };
 }
