@@ -14,6 +14,10 @@ function discussionController($scope, $http, $routeParams, $resource, Comments) 
     $scope.discussion = messageApi.get({id:discussionId});
     console.log($scope.discussion);
 
+    $scope.deleteMessage = function(){
+        messageApi.delete({id:discussionId});
+    };
+
     $scope.subject = '';
     $scope.content = '';
 
