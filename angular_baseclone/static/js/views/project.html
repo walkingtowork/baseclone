@@ -8,6 +8,15 @@
 <div>
     Topics:
     <h3>
+        All Discussions:
+    </h3>
+    <input ng-model="searchText">
+    <div ng-repeat="topic in topics | filter:searchText">
+        <a href="#/projects/{{ project.id }}/discussion/{{ topic.topicable.id }}">
+            <p>Title: {{ topic.title }}</p>
+        </a>
+    </div>
+    <h3>
         Discussions:
     </h3>
     <div ng-repeat="topic in topics | topicTypeFilter:'Message'">
