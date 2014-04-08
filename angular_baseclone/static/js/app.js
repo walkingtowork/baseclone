@@ -14,6 +14,11 @@ baseclone.config(['$routeProvider', function($routeProvider) {
 // This code creates a custom filter that is used in project.html
 baseclone.filter('topicTypeFilter', function() {
    return function(topicList, topicType) {
+       // Unlike our previous filter, which was a function in the projectController that used
+       // Angular's built-in filtering, custom app filters are applied to the whole list of objects
+       // e.g. in projectController.hasAttachment(filterData), filterData is a specific topic
+       // In baseclone.topicTypeFilter, topicList is the list of all topics,
+       // and we have to iterate over each ourselves
        var filtered = [];
        angular.forEach(topicList, function(topic){
            if (topic.topicable.type == topicType) {
