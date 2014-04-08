@@ -10,8 +10,10 @@
     <h3>
         All Discussions:
     </h3>
-    <input ng-model="searchText">
-    <div ng-repeat="topic in topics | filter:searchText">
+    <p>Search text: <input ng-model="searchText"></p>
+    <p>Only with attachments: <input type="checkbox" ng-model="attachmentBoolean"></p>
+
+    <div ng-repeat="topic in topics | filter:searchText | filter:hasAttachment">
         <a href="#/projects/{{ project.id }}/discussion/{{ topic.topicable.id }}">
             <p>Title: {{ topic.title }}</p>
         </a>
