@@ -37,3 +37,18 @@ baseclone.filter('topicTypeFilter', function() {
 //   $http.defaults.headers.common.UserAgent = 'alex+1@yetihq.com (alex+1@yetihq.com)';
 //   $http.defaults.headers.common.ContentType = 'application/json';
 //});
+
+baseclone.directive('button', function(){
+    return {
+        restrict: 'E',
+        compile: function(element, attributes){
+            element.addClass('btn');
+            if (attributes.type === "submit") {
+                element.addClass('btn-primary');
+            }
+            if (attributes.size) {
+                element.addClass('btn-' + attributes.size);
+            }
+        }
+    }
+});
