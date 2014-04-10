@@ -1,3 +1,13 @@
+<li class="dropdown">
+    <a class="dropdown-toggle">Projects</a>
+    <ul class="dropdown-menu">
+        <li ng-repeat="project in projects">
+            <a href="#/projects/{{ project.id }}">
+                {{ project.name }}
+            </a>
+        </li>
+    </ul>
+</li>
 <welcome></welcome>
 <h2>
     {{ project.name }}

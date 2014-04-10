@@ -11,6 +11,15 @@ baseclone.config(['$routeProvider', function($routeProvider) {
         otherwise({redirectTo: '/'});
 }]);
 
+baseclone.run(function($rootScope, $http){
+    $http.get('/proxy/projects.json').
+        success(function(data){
+            $rootScope.projects = data;
+        }).error(function(data) {
+          console.log("didn't work");
+    });
+});
+
 // This code creates a custom filter that is used in project.html
 baseclone.filter('topicTypeFilter', function() {
    return function(topicList, topicType) {

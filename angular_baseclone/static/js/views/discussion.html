@@ -1,3 +1,13 @@
+<li class="dropdown">
+    <a class="dropdown-toggle">Projects</a>
+    <ul class="dropdown-menu">
+        <li ng-repeat="project in projects">
+            <a href="#/projects/{{ project.id }}">
+                {{ project.name }}
+            </a>
+        </li>
+    </ul>
+</li>
 <h1>{{ discussion.subject }}</h1>
 <div ng-bind-html="discussion.content"></div>
 
