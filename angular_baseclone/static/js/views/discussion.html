@@ -11,6 +11,7 @@
 <h1>{{ discussion.subject }}</h1>
 <div ng-bind-html="discussion.content"></div>
 
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 <button ng-click="deleteMessage();">Delete</button>
 <button ng-click="edit();" ng-hide="editing" type="submit">
     Edit

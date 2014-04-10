@@ -14,8 +14,15 @@ function discussionController($scope, $http, $routeParams, $resource, Comments) 
     $scope.discussion = messageApi.get({id:discussionId});
     console.log($scope.discussion);
 
+    $scope.alerts = [];
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
+
     $scope.deleteMessage = function(){
-        messageApi.delete({id:discussionId});
+        messageApi.delete({id:discussionId}, function(){
+            $scope.alerts.push({type: 'success', msg: 'This message has been deleted'})
+        });
     };
 
     $scope.subject = '';
