@@ -77,3 +77,22 @@ baseclone.directive('searchBar', function(){
         }
     }
 });
+
+baseclone.directive('factoids', function($rootScope){
+    return {
+        restrict: 'A',
+        templateUrl: "/static/js/views/factoid.html",
+        link: function(scope, element, attrs){
+            var factoids = [
+                'Basecamp used to be called 37signals',
+                'David Heienemeier-Hansson (dhh) created Rails while building Basecamp',
+                'Basecamp is based in Chicago but they are obsessed with working remotely',
+                'Highrise is another Basecamp product',
+                'Put anything you want here',
+            ]
+            $rootScope.$on('$routeChangeSuccess', function(){
+                scope.factoid = factoids[Math.floor((Math.random()*5))];
+            });
+        }
+    }
+});
