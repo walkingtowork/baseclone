@@ -59,3 +59,21 @@ baseclone.directive('welcome', function(){
         template: "<div>Welcome to Baseclone!</div>"
     }
 });
+
+baseclone.directive('searchBar', function(){
+// If you are using template or templateUrl in your directive with replace: true,
+// you must have a single root element that is replacing the directive call in your
+// view. So, you can't have two <p> tags as siblings here without a wrapper. You need a
+// SINGLE element (in this case <div>) for Angular to inject
+    return {
+        restrict: 'E',
+        templateUrl: "/static/js/views/searchbar.html",
+        replace: "true",
+        link: function(scope){
+            var query = location.hash.split("?")[1];
+            if (query) {
+                scope.searchText = query;
+            }
+        }
+    }
+});
