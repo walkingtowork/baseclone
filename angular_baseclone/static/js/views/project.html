@@ -13,14 +13,13 @@
     </h3>
     <search-bar></search-bar>
 
-    <div ng-repeat="topic in topics | filter:searchText | filter:hasAttachment" class="discussionTile">
+    <accordion-group heading="{{ topic.title }}" ng-repeat="topic in topics | filter:searchText | filter:hasAttachment">
         <a href="#/projects/{{ project.id }}/discussion/{{ topic.topicable.id }}">
             <div>
-                <h4>{{ topic.title }}</h4>
                 <p>{{ topic.excerpt }}</p>
             </div>
         </a>
-    </div>
+    </accordion-group>
     <h3>
         Messages:
     </h3>
