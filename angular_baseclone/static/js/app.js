@@ -52,3 +52,10 @@ baseclone.directive('button', function(){
         }
     }
 });
+
+baseclone.directive('welcome', function(){
+    return {
+        restrict: 'E',
+        template: "<div>Welcome to Baseclone!</div>"
+    }
+});
