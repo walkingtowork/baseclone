@@ -1,4 +1,4 @@
-var baseclone = angular.module('baseclone',['ngRoute', 'ngResource', 'ui.bootstrap']);
+var baseclone = angular.module('baseclone',['ngRoute', 'ngResource', 'ngSanitize', 'ui.bootstrap']);
 
 
 // This is where we set our routes

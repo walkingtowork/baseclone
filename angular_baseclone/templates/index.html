@@ -10,6 +10,7 @@
     <script src="{% static "js/vendors/angular/angular.js" %}"></script>
     <script src="{% static "js/vendors/angular/angular-resource.js" %}"></script>
     <script src="{% static "js/vendors/angular/angular-route.js" %}"></script>
+    <script src="{% static "js/vendors/angular/angular-sanitize.js" %}"></script>
     <!------- Bootstrap ------->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script src="{% static "js/vendors/ui-bootstrap-tpls-0.10.0.min.js" %}"></script>
@@ -29,7 +30,7 @@
 </head>
 <body>
     <div ng-app="baseclone">
-        Outside of ng-view
+        <h1>Baseclone, the greatest AngularJS project of all time.</h1>
         <div factoids class="panel panel-primary"></div>
         <div class="container" ng-view></div>
     </div>

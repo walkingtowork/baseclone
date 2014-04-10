@@ -1,4 +1,5 @@
 <welcome></welcome>
+<h2>Add a new project</h2>
 <form>
     <div>
         Name: <input ng-model="projectName">
@@ -9,7 +10,8 @@
     <button ng-click="newProject();">Add a new project!</button>
 </form>
 
-<div ng-repeat="project in projects">
+<h2>All Projects</h2>
+<div ng-repeat="project in projects" class="col-md-3 projectTile">
     <a href="#/projects/{{ project.id }}">
         <h3>{{ project.name }}</h3>
         <div>{{ project.description }}</div>

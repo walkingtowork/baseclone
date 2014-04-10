@@ -1,10 +1,8 @@
 <h1>{{ discussion.subject }}</h1>
-<div>
-    {{ discussion.content }}
-</div>
+<div ng-bind-html="discussion.content"></div>
 
 <button ng-click="deleteMessage();">Delete</button>
-<button ng-click="edit();" ng-hide="editing" type="submit" size="large">
+<button ng-click="edit();" ng-hide="editing" type="submit">
     Edit
 </button>
 
@@ -17,8 +15,9 @@
 </button>
 
 <h2>Comments</h2>
-<div ng-repeat="comment in discussion.comments">
-    <b>{{ comment.creator.name }}:</b>{{ comment.content }}
+<div ng-repeat="comment in discussion.comments" class="commentTile">
+    <h4>{{ comment.creator.name }}: </h4>
+    <p ng-bind-html="comment.content"></p>
 </div>
 <br>
 <input ng-model="commentText" placeholder="Add a comment...">

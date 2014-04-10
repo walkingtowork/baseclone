@@ -1,3 +1,19 @@
 .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
 }
+
+.projectTile {
+    height: 200px;
+    background-color: yellow;
+    margin: 10px;
+}
+
+.discussionTile {
+    margin-bottom: 20px;
+    background-color: lavender;
+}
+
+.commentTile {
+    margin-bottom: 20px;
+    background-color: lightcyan;
+}
