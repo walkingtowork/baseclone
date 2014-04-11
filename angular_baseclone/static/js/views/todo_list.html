@@ -8,25 +8,25 @@
         </li>
     </ul>
 </li>
-<h1>{{ todo.name }}</h1>
-<div ng-bind-html="todo.description"></div>
+<h1>{{ todoList.name }}</h1>
+<div ng-bind-html="todoList.description"></div>
 
 <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
-<button ng-click="deleteTodo();">Delete</button>
+<button ng-click="deleteTodoList();">Delete</button>
 <button ng-click="edit();" ng-hide="editing" type="submit">
     Edit
 </button>
 
-<input ng-model="name" type="text" placeholder="{{ todo.name }}" ng-show="editing">
+<input ng-model="name" type="text" placeholder="{{ todoList.name }}" ng-show="editing">
 <br>
-<textarea ng-model="description" type="text" placeholder="{{ todo.description }}" ng-show="editing"></textarea>
+<textarea ng-model="description" type="text" placeholder="{{ todoList.description }}" ng-show="editing"></textarea>
 <br>
 <button ng-click="saveChanges();" ng-show="editing">
     Save changes
 </button>
 
 <h2>To Dos:</h2>
-<div ng-repeat="todo in todo.todos.remaining" class="commentTile">
+<div ng-repeat="todo in todoList.todos.remaining" class="commentTile">
     <p>{{ todo.content }}: {{ todo.assignee.name }}</p>
 </div>
 <br>

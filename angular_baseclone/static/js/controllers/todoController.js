@@ -1,7 +1,8 @@
-function todoController($scope, $http, $routeParams, $resource, Comments) {
+function todoController($scope, $http, $routeParams, $resource, Comments, TodoList) {
     // Here we'll use $routeParams to get the id from the URL and then append it
     // to our $http.get URL
     var projectId = $routeParams.projectId;
+    $scope.projectId = projectId;
     var todoId = $routeParams.todoId;
 
     var Todo = $resource('/proxy/projects/'+ projectId +'/todos/' + todoId + '.json', {
@@ -12,6 +13,9 @@ function todoController($scope, $http, $routeParams, $resource, Comments) {
     });
 
     $scope.todo = Todo.get({id:todoId});
+    $scope.todo.$promise.then(function(){
+        $scope.todoList = TodoList.get({ pID:projectId, dID:$scope.todo.todolist_id });
+    });
 
     $scope.alerts = [];
     $scope.closeAlert = function(index) {
