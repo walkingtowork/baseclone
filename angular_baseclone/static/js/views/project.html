@@ -24,21 +24,23 @@
     <search-bar></search-bar>
 
     <accordion-group heading="{{ topic.topicable.type }} | {{ topic.title }}" ng-repeat="topic in topics | filter:searchText | filter:hasAttachment">
-        <a ng-if="topic.topicable.type == 'Message'" href="#/projects/{{ project.id }}/discussion/{{ topic.topicable.id }}">
-            <div>
-                <p>{{ topic.excerpt }}</p>
-            </div>
-        </a>
-        <a ng-if="topic.topicable.type == 'Todo'" href="#/projects/{{ project.id }}/todo/{{ topic.topicable.id }}">
-            <div>
-                <p>{{ topic.excerpt }}</p>
-            </div>
-        </a>
-        <a ng-if="topic.topicable.type == 'CalendarEvent'" href="#/projects/{{ project.id }}/calendar_event/{{ topic.topicable.id }}">
-            <div>
-                <p>{{ topic.excerpt }}</p>
-            </div>
-        </a>
+        <div ng-switch on="topic.topicable.type">
+            <a ng-switch-when="Message" href="#/projects/{{ project.id }}/discussion/{{ topic.topicable.id }}">
+                <div>
+                    <p>{{ topic.excerpt }}</p>
+                </div>
+            </a>
+            <a ng-switch-when="Todo" href="#/projects/{{ project.id }}/todo/{{ topic.topicable.id }}">
+                <div>
+                    <p>{{ topic.excerpt }}</p>
+                </div>
+            </a>
+            <a ng-switch-when="CalendarEvent" href="#/projects/{{ project.id }}/calendar_event/{{ topic.topicable.id }}">
+                <div>
+                    <p>{{ topic.excerpt }}</p>
+                </div>
+            </a>
+        </div>
     </accordion-group>
 
     <!-- Let's simplify and show this all in the discussion list above
