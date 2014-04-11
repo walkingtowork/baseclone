@@ -1,24 +1,17 @@
-function todoListController($scope, $http, $routeParams, $resource, Comments) {
+function todoListController($scope, $http, $routeParams, $resource, Comments, TodoList) {
     // Here we'll use $routeParams to get the id from the URL and then append it
     // to our $http.get URL
     var projectId = $routeParams.projectId;
     var todoListId = $routeParams.todoListId;
 
-    var TodoList = $resource('/proxy/projects/'+ projectId +'/todolists/' + todoListId + '.json', {
-        // Parameter defaults
-    }, {
-        // Actions
-        update: {method: 'PUT'}
-    });
-
-    $scope.todoList = TodoList.get({id:todoListId});
+    $scope.todoList = TodoList.get({ pID:projectId, dID:todoListId });
 
     $scope.alerts = [];
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
     };
 
-    $scope.deleteTodo = function(){
+    $scope.deleteTodoList = function(){
         TodoList.delete({id:todoListId}, function(){
             $scope.alerts.push({type: 'success', msg: 'This todo list has been deleted'})
         });

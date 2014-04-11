@@ -8,6 +8,7 @@
         </li>
     </ul>
 </li>
+<a href="#/projects/{{ projectId }}/todolist/{{ todoList.id }}">{{ todoList.name }}</a>
 <h1>{{ todo.content }}: {{ todo.assignee.name || "No assignee" }}</h1>
 
 <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
