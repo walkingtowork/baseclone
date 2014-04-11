@@ -1,0 +1,32 @@
+<li class="dropdown">
+    <a class="dropdown-toggle">Projects</a>
+    <ul class="dropdown-menu">
+        <li ng-repeat="project in projects">
+            <a href="#/projects/{{ project.id }}">
+                {{ project.name }}
+            </a>
+        </li>
+    </ul>
+</li>
+<h1>{{ todo.content }}: {{ todo.assignee.name || "No assignee" }}</h1>
+
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+<button ng-click="deleteTodo();">Delete</button>
+<button ng-click="edit();" ng-hide="editing" type="submit">
+    Edit
+</button>
+
+<input ng-model="content" type="text" placeholder="{{ todo.content }}" ng-show="editing">
+<br>
+<button ng-click="saveChanges();" ng-show="editing">
+    Save changes
+</button>
+
+<h2>Comments</h2>
+<div ng-repeat="comment in todo.comments" class="commentTile">
+    <h4>{{ comment.creator.name }}: </h4>
+    <p ng-bind-html="comment.content"></p>
+</div>
+<br>
+<input ng-model="commentText" placeholder="Add a comment...">
+<button ng-click="addComment();">Add comment</button>

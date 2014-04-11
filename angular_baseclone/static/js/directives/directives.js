@@ -27,7 +27,7 @@ baseclone.directive('searchBar', function(){
 // SINGLE element (in this case <div>) for Angular to inject
     return {
         restrict: 'E',
-        templateUrl: "/static/js/views/searchbar.html",
+        templateUrl: "/static/js/views/directives/searchbar.html",
         replace: "true",
         link: function(scope){
             var query = location.hash.split("?")[1];
@@ -41,7 +41,7 @@ baseclone.directive('searchBar', function(){
 baseclone.directive('factoids', function($rootScope){
     return {
         restrict: 'A',
-        templateUrl: "/static/js/views/factoid.html",
+        templateUrl: "/static/js/views/directives/factoid.html",
         link: function(scope, element, attrs){
             var factoids = [
                 'Basecamp used to be called 37signals',

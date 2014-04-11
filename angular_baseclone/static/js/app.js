@@ -8,6 +8,9 @@ baseclone.config(['$routeProvider', function($routeProvider) {
         // Add a specific project id as a route parameter here
         when('/projects/:id', {templateUrl: '/static/js/views/project.html', controller: projectController}).
         when('/projects/:projectId/discussion/:discussionId', {templateUrl: '/static/js/views/discussion.html', controller: discussionController}).
+        when('/projects/:projectId/todo/:todoId', {templateUrl: '/static/js/views/todo.html', controller: todoController}).
+        when('/projects/:projectId/todolist/:todoListId', {templateUrl: '/static/js/views/todo_list.html', controller: todoListController}).
+        when('/projects/:projectId/calendar_event/:calendarId', {templateUrl: '/static/js/views/calendar_event.html', controller: calendarEventController}).
         otherwise({redirectTo: '/'});
 }]);
 

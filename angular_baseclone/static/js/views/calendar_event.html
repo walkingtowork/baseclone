@@ -1,0 +1,39 @@
+<li class="dropdown">
+    <a class="dropdown-toggle">Projects</a>
+    <ul class="dropdown-menu">
+        <li ng-repeat="project in projects">
+            <a href="#/projects/{{ project.id }}">
+                {{ project.name }}
+            </a>
+        </li>
+    </ul>
+</li>
+<h1>{{ calendarEvent.summary }}</h1>
+<div>
+    <p>{{ calendarEvent.description }}</p>
+    <p>{{ calendarEvent.starts_at }} - {{ calendarEvent.ends_at }}</p>
+    <p>Created by: {{ calendarEvent.creator.name }}</p>
+</div>
+
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+<button ng-click="deleteEvent();">Delete</button>
+<button ng-click="edit();" ng-hide="editing" type="submit">
+    Edit
+</button>
+
+<input ng-model="summary" type="text" placeholder="{{ calendarEvent.summary }}" ng-show="editing">
+<br>
+<textarea ng-model="description" type="text" placeholder="{{ calendarEvent.description }}" ng-show="editing"></textarea>
+<br>
+<button ng-click="saveChanges();" ng-show="editing">
+    Save changes
+</button>
+
+<h2>Comments</h2>
+<div ng-repeat="comment in discussion.comments" class="commentTile">
+    <h4>{{ comment.creator.name }}: </h4>
+    <p ng-bind-html="comment.content"></p>
+</div>
+<br>
+<input ng-model="commentText" placeholder="Add a comment...">
+<button ng-click="addComment();">Add comment</button>
