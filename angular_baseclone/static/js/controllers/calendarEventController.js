@@ -33,12 +33,20 @@ function calendarEventController($scope, $http, $routeParams, $resource, Comment
         // If the form is not valid then return
         if(!$scope.eventForm.$valid) return false;
 
+        var startDate = $scope.event.starts_at_date.toISOString().split("T")[0];
+        if($scope.event.all_day) {
+            var endDate = $scope.event.ends_at_date.toISOString().split("T")[0];
+            // If this is an all day event, make sure the end date is after the start date
+            if (endDate < startDate) {
+                $scope.eventForm.ends_at_date.$setValidity('after', false);
+                return false
+            }
+        }
+
         $scope.editing = false;
 
         $scope.calendarEvent.summary = $scope.event.summary;
         $scope.calendarEvent.description = $scope.event.description;
-
-        var startDate = $scope.event.starts_at_date.toISOString().split("T")[0];
 
         // If this event is 'all day' then just record start and end dates
         if($scope.event.all_day) {

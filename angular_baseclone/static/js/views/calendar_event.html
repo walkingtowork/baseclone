@@ -24,22 +24,22 @@
 <br><br>
 
 <form name="eventForm" novalidate ng-submit="saveChanges();" ng-show="editing">
-    Summary: <input ng-model="event.summary" type="text" placeholder="{{ calendarEvent.summary }}" required> <span class="required">* Please fill out</span>
+    Summary: <input name="summary" ng-model="event.summary" type="text" placeholder="{{ calendarEvent.summary }}" required> <span class="required">* Please fill out</span>
 
     <br><br>
 
-    Description: <textarea ng-model="event.description" type="text" placeholder="{{ calendarEvent.description }}" required></textarea> <span class="required">* Please fill out</span>
+    Description: <textarea name="description" ng-model="event.description" type="text" placeholder="{{ calendarEvent.description }}" required></textarea> <span class="required">* Please fill out</span>
 
     <br><br>
 
-    All Day: <input type="checkbox" ng-model="event.all_day">
+    All Day: <input name="all_day" type="checkbox" ng-model="event.all_day">
 
     <br><br>
 
     <div>
         Starts At:
-        <input type="text" ng-model="event.starts_at_date" ng-required="true" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
-        <div ng-show="!event.all_day" ng-model="event.starts_at_time">
+        <input name="starts_at_date" type="text" ng-model="event.starts_at_date" ng-required="true" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
+        <div name="all_day" ng-show="!event.all_day" ng-model="event.starts_at_time">
             <timepicker></timepicker>
         </div>
     </div>
@@ -48,7 +48,8 @@
 
     <div ng-show="event.all_day">
         Ends At:
-        <input type="text" ng-model="event.ends_at_date" ng-required="event.all_day" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
+        <input name="ends_at_date" type="text" ng-model="event.ends_at_date" ng-required="event.all_day" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
+        <span ng-show="eventForm.ends_at_date.$error.after">End Date must be after the start date</span>
         <br><br>
     </div>
 
