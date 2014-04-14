@@ -49,8 +49,6 @@ function calendarEventController($scope, $http, $routeParams, $resource, Comment
             $scope.calendarEvent.starts_at = startDate + "T" + startTime;
         }
 
-        console.log($scope.calendarEvent.starts_at);
-
         $scope.calendarEvent.all_day = $scope.all_day;
 
         CalendarEvent.update({id:calendarId}, $scope.calendarEvent);
