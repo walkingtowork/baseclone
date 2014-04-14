@@ -10,8 +10,9 @@
 </li>
 <h1>{{ calendarEvent.summary }}</h1>
 <div>
-    <p>{{ calendarEvent.description }}</p>
-    <p>{{ calendarEvent.starts_at }} - {{ calendarEvent.ends_at }}</p>
+    <p>Description: {{ calendarEvent.description }}</p>
+    <p>All Day: {{ calendarEvent.all_day }}</p>
+    <p>Time: {{ calendarEvent.starts_at }} <span ng-show="calendarEvent.all_day">- {{ calendarEvent.ends_at }}</span></p>
     <p>Created by: {{ calendarEvent.creator.name }}</p>
 </div>
 
@@ -20,14 +21,43 @@
 <button ng-click="edit();" ng-hide="editing" type="submit">
     Edit
 </button>
+<br><br>
 
-<input ng-model="summary" type="text" placeholder="{{ calendarEvent.summary }}" ng-show="editing">
-<br>
-<textarea ng-model="description" type="text" placeholder="{{ calendarEvent.description }}" ng-show="editing"></textarea>
-<br>
-<button ng-click="saveChanges();" ng-show="editing">
-    Save changes
-</button>
+<form name="eventForm" novalidate ng-submit="saveChanges();" ng-show="editing">
+    Summary: <input name="summary" ng-model="event.summary" type="text" placeholder="{{ calendarEvent.summary }}" required> <span class="required">* Please fill out</span>
+
+    <br><br>
+
+    Description: <textarea name="description" ng-model="event.description" type="text" placeholder="{{ calendarEvent.description }}" required></textarea> <span class="required">* Please fill out</span>
+
+    <br><br>
+
+    All Day: <input name="all_day" type="checkbox" ng-model="event.all_day">
+
+    <br><br>
+
+    <div>
+        Starts At:
+        <input name="starts_at_date" type="text" ng-model="event.starts_at_date" ng-required="true" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
+        <div name="all_day" ng-show="!event.all_day" ng-model="event.starts_at_time">
+            <timepicker></timepicker>
+        </div>
+    </div>
+
+    <br>
+
+    <div ng-show="event.all_day">
+        Ends At:
+        <input name="ends_at_date" type="text" ng-model="event.ends_at_date" ng-required="event.all_day" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
+        <span ng-show="eventForm.ends_at_date.$error.after">End Date must be after the start date</span>
+        <br><br>
+    </div>
+
+    <button type="submit">
+        Save changes
+    </button>
+</form>
+
 
 <h2>Comments</h2>
 <div ng-repeat="comment in discussion.comments" class="commentTile">
@@ -37,3 +67,4 @@
 <br>
 <input ng-model="commentText" placeholder="Add a comment...">
 <button ng-click="addComment();">Add comment</button>
+<br><br>

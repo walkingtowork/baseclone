@@ -30,10 +30,32 @@ function calendarEventController($scope, $http, $routeParams, $resource, Comment
     };
 
     $scope.saveChanges = function() {
+        // If the form is not valid then return
+        var startDate = $scope.event.starts_at_date.toISOString().split("T")[0];
+        if($scope.event.all_day) {
+            var endDate = $scope.event.ends_at_date.toISOString().split("T")[0];
+            // If this is an all day event, make sure the end date is after the start date
+            $scope.eventForm.ends_at_date.$setValidity('after', endDate >= startDate);
+        }
+
+        if(!$scope.eventForm.$valid) return false;
+
         $scope.editing = false;
 
-        $scope.calendarEvent.summary = $scope.summary;
-        $scope.calendarEvent.description = $scope.description;
+        $scope.calendarEvent.summary = $scope.event.summary;
+        $scope.calendarEvent.description = $scope.event.description;
+
+        // If this event is 'all day' then just record start and end dates
+        if($scope.event.all_day) {
+            $scope.calendarEvent.starts_at = startDate;
+            $scope.calendarEvent.ends_at = $scope.event.ends_at_date.toISOString().split("T")[0];
+        } else { // If this event is not 'all day', record the date and time for it's start
+            var startTime = $scope.event.starts_at_time.getHours() + ":" + $scope.event.starts_at_time.getMinutes() + ":00.000-07:00";
+            $scope.calendarEvent.starts_at = startDate + "T" + startTime;
+        }
+
+        $scope.calendarEvent.all_day = $scope.event.all_day;
+
         CalendarEvent.update({id:calendarId}, $scope.calendarEvent);
     };
 
