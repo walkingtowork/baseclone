@@ -24,31 +24,31 @@
 <br><br>
 
 <form name="eventForm" novalidate ng-submit="saveChanges();" ng-show="editing">
-    Summary: <input ng-model="summary" type="text" placeholder="{{ calendarEvent.summary }}" required> <span class="required">* Please fill out</span>
+    Summary: <input ng-model="event.summary" type="text" placeholder="{{ calendarEvent.summary }}" required> <span class="required">* Please fill out</span>
 
     <br><br>
 
-    Description: <textarea ng-model="description" type="text" placeholder="{{ calendarEvent.description }}" required></textarea> <span class="required">* Please fill out</span>
+    Description: <textarea ng-model="event.description" type="text" placeholder="{{ calendarEvent.description }}" required></textarea> <span class="required">* Please fill out</span>
 
     <br><br>
 
-    All Day: <input type="checkbox" ng-model="all_day">
+    All Day: <input type="checkbox" ng-model="event.all_day">
 
     <br><br>
 
     <div>
         Starts At:
-        <input type="text" ng-model="starts_at_date" ng-required="true" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
-        <div ng-show="!all_day" ng-model="starts_at_time">
+        <input type="text" ng-model="event.starts_at_date" ng-required="true" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
+        <div ng-show="!event.all_day" ng-model="event.starts_at_time">
             <timepicker></timepicker>
         </div>
     </div>
 
     <br>
 
-    <div ng-show="all_day">
+    <div ng-show="event.all_day">
         Ends At:
-        <input type="text" ng-model="ends_at_date" ng-required="all_day" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
+        <input type="text" ng-model="event.ends_at_date" ng-required="event.all_day" close-text="Close" datepicker-popup="yyyy-MM-dd"/>
         <br><br>
     </div>
 
