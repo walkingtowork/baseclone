@@ -17,3 +17,12 @@
     margin-bottom: 20px;
     background-color: lightcyan;
 }
+
+input.ng-dirty.ng-valid { border:3px solid Green; }
+textarea.ng-dirty.ng-valid { border:3px solid Green; }
+
+input.ng-dirty.ng-invalid { border:3px solid Red; }
+textarea.ng-dirty.ng-invalid { border:3px solid Red; }
+
+.required { display: none; color:red; }
+.ng-invalid-required ~ span.required { display:inline; }
