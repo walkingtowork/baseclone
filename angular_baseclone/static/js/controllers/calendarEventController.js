@@ -31,17 +31,14 @@ function calendarEventController($scope, $http, $routeParams, $resource, Comment
 
     $scope.saveChanges = function() {
         // If the form is not valid then return
-        if(!$scope.eventForm.$valid) return false;
-
         var startDate = $scope.event.starts_at_date.toISOString().split("T")[0];
         if($scope.event.all_day) {
             var endDate = $scope.event.ends_at_date.toISOString().split("T")[0];
             // If this is an all day event, make sure the end date is after the start date
-            if (endDate < startDate) {
-                $scope.eventForm.ends_at_date.$setValidity('after', false);
-                return false
-            }
+            $scope.eventForm.ends_at_date.$setValidity('after', endDate >= startDate);
         }
+
+        if(!$scope.eventForm.$valid) return false;
 
         $scope.editing = false;
 
