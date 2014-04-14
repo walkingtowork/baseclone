@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!------- Angular ------->
+    <script src="{% static "js/vendors/angular/angular.js" %}"></script>
+    <script src="{% static "js/vendors/angular/angular-route.js" %}"></script>
+
+    <!-- JavaScript -->
+    <script src="{% static "js/exampleApp.js" %}"></script>
+
+    <!------- Controllers ------->
+    <script src="{% static "js/controllers/exampleController.js" %}"></script>
+</head>
+<body>
+    Outside of angular app
+    <div ng-app="exampleApp">
+        Outside of current view
+        <div ng-view></div>
+    </div>
+</body>
+</html>

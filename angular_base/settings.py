@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'angular_baseclone',
+    'angular_example',
 )
 
 MIDDLEWARE_CLASSES = (
